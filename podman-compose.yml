@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  porto-arul:
+    container_name: porto_arul_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_STRAPI_URL: ${VITE_STRAPI_URL:-https://strapi.cihuy-familly.my.id}
+    ports:
+      - "${APP_PORT:-3003}:80"
+    restart: unless-stopped

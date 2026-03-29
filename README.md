@@ -52,3 +52,35 @@ Karena kamu mau CMS hanya untuk `IG content` dan `Work experience`, setup paling
   - `/api/cms-arul?populate=*`
   - `/api/cms_aruls?populate=*`
 - Kalau CMS belum siap/public, UI otomatis pakai fallback data lokal supaya landing page tetap tampil.
+
+## Deploy Dengan Podman
+
+File deploy yang sudah disiapkan:
+- `Dockerfile`
+- `nginx.conf`
+- `podman-compose.yml`
+
+Jalankan dari PowerShell:
+
+```powershell
+cd "D:\Users\dawwi\Documents\Playground\porto_arul"
+
+# Optional: override URL CMS dan port app
+$env:VITE_STRAPI_URL="https://strapi.cihuy-familly.my.id"
+$env:APP_PORT="3003"
+
+podman compose -f podman-compose.yml up -d --build
+```
+
+Cek container:
+
+```powershell
+podman ps
+podman logs -f porto_arul_web
+```
+
+Stop:
+
+```powershell
+podman compose -f podman-compose.yml down
+```
